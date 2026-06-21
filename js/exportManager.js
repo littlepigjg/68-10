@@ -15,6 +15,10 @@ class ExportManager {
             this.worker = new Worker('js/render.worker.js');
             
             this.worker.onmessage = (e) => {
+                if (this._perfRequestId && window.perfMonitor) {
+                    window.perfMonitor.trackWorkerResponse(this._perfRequestId);
+                    this._perfRequestId = null;
+                }
                 this.handleWorkerMessage(e);
             };
             
@@ -108,6 +112,9 @@ class ExportManager {
             this.currentTask = { resolve, reject, type: 'page' };
             
             if (useWorker) {
+                if (window.perfMonitor) {
+                    this._perfRequestId = window.perfMonitor.trackWorkerRequest('renderPage');
+                }
                 this.worker.postMessage({
                     type: 'renderPage',
                     data: { ...options, seed: Math.random() }
@@ -132,6 +139,9 @@ class ExportManager {
             this.currentTask = { resolve, reject, type: 'allPages' };
             
             if (useWorker) {
+                if (window.perfMonitor) {
+                    this._perfRequestId = window.perfMonitor.trackWorkerRequest('renderAllPages');
+                }
                 this.worker.postMessage({
                     type: 'renderAllPages',
                     data: { ...options, seed: Math.random() }
@@ -156,6 +166,9 @@ class ExportManager {
             this.currentTask = { resolve, reject, type: 'longImage' };
             
             if (useWorker) {
+                if (window.perfMonitor) {
+                    this._perfRequestId = window.perfMonitor.trackWorkerRequest('renderLongImage');
+                }
                 this.worker.postMessage({
                     type: 'renderLongImage',
                     data: { ...options, seed: Math.random() }

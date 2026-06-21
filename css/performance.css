@@ -1,0 +1,301 @@
+.perf-panel {
+    position: fixed;
+    width: 380px;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.perf-panel-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+.perf-panel-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.perf-panel-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.perf-panel-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.perf-panel.perf-collapsed .perf-panel-content {
+    display: none;
+}
+
+.perf-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    flex-shrink: 0;
+}
+
+.perf-panel-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.perf-panel-header-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.perf-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.perf-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.perf-btn-icon {
+    color: white;
+    font-size: 14px;
+}
+
+.perf-panel-content {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.perf-panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.perf-panel-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.perf-panel-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.perf-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.perf-metric-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.perf-metric-label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.perf-metric-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+}
+
+.perf-metric-value.perf-good {
+    color: #22c55e;
+}
+
+.perf-metric-value.perf-warning {
+    color: #f59e0b;
+}
+
+.perf-metric-value.perf-danger {
+    color: #ef4444;
+}
+
+.perf-metric-trend {
+    height: 3px;
+    margin-top: 6px;
+    border-radius: 2px;
+    background: #e0e0e0;
+    overflow: hidden;
+}
+
+.perf-chart-canvas {
+    width: 100%;
+    height: 60px;
+    margin-top: 8px;
+    display: block;
+}
+
+.perf-section {
+    margin-bottom: 16px;
+}
+
+.perf-section:last-child {
+    margin-bottom: 0;
+}
+
+.perf-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.perf-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perf-suggestion {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.perf-suggestion.perf-good {
+    background: #f0fdf4;
+    color: #166534;
+}
+
+.perf-suggestion.perf-warning {
+    background: #fffbeb;
+    color: #92400e;
+}
+
+.perf-suggestion.perf-danger {
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+.perf-suggestion-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.perf-suggestion-content {
+    flex: 1;
+}
+
+.perf-suggestion-title {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.perf-suggestion-desc {
+    font-size: 11px;
+    opacity: 0.8;
+    line-height: 1.4;
+}
+
+.perf-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.perf-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.perf-stat-label {
+    font-size: 11px;
+    color: #888;
+}
+
+.perf-stat-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.perf-toggle {
+    position: fixed;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    z-index: 10000;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.perf-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.perf-toggle-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+.perf-toggle-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.perf-toggle-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.perf-toggle-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+@media (max-width: 480px) {
+    .perf-panel {
+        width: calc(100vw - 40px);
+        max-height: 70vh;
+    }
+    
+    .perf-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -113,6 +113,8 @@ class HandwritingRenderer {
     }
 
     renderPage(pageIndex) {
+        const startTime = performance.now();
+        
         const { pageWidth, pageHeight, padding, fontSize, lineHeight, charSpacing,
                 paperColor, inkColor, fontFamily, weight, slantAngle, inkDensity,
                 randomOffset, strokeNoise } = this.options;
@@ -172,6 +174,11 @@ class HandwritingRenderer {
                 x += charWidth;
                 charCount++;
             }
+        }
+        
+        const duration = performance.now() - startTime;
+        if (window.perfMonitor) {
+            window.perfMonitor.trackRender(duration);
         }
         
         return pages.length;

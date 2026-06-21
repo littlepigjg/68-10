@@ -11,7 +11,42 @@ class HandwritingApp {
         this.customFontFamily = null;
         this.debounceTimer = null;
         
+        this._initPerfMonitor();
+        
         this.init();
+    }
+    
+    _initPerfMonitor() {
+        window.perfMonitor = new PerformanceMonitor({
+            maxDataPoints: 300,
+            sampleInterval: 1000
+        });
+        
+        this.perfPanel = new PerformancePanel(window.perfMonitor, {
+            position: 'bottom-right',
+            collapsed: false
+        });
+        
+        this.perfPanel.showToggleButton();
+        
+        this._addPerfToggleShortcut();
+    }
+    
+    _addPerfToggleShortcut() {
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'P') {
+                e.preventDefault();
+                this.togglePerfPanel();
+            }
+        });
+    }
+    
+    togglePerfPanel() {
+        if (this.perfPanel.isVisible) {
+            this.perfPanel.hide();
+        } else {
+            this.perfPanel.show();
+        }
     }
 
     async init() {
